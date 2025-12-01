@@ -1,0 +1,15 @@
+pandas
+sqlalchemy
+psycopg2-binary
+transformers
+torch       # if using transformers locally
+sentencepiece
+spacy
+scikit-learn
+nltk
+matplotlib
+wordcloud
+tqdm
+google-play-scraper  # Node version; see note below
+google_play_scraper  # python alternative package
+vaderSentiment
