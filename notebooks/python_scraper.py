@@ -9,7 +9,13 @@ rows=[]
 for app in apps:
   count=0; token=None
   while count < 420:
-    rv, token = reviews(app['pkg'], lang='en', country='us', sort=Sort.NEWEST, continuation_token=token)
+    rv, token = reviews(
+      app['pkg'],
+      lang='en',
+      country='us',
+      sort=Sort.NEWEST,
+      continuation_token=token
+    )
     if not rv: break
     for r in rv:
       rows.append({
@@ -22,7 +28,6 @@ for app in apps:
       })
       count += 1
     if token is None: break
-import pandas as pd
 df = pd.DataFrame(rows)
 df.to_csv('reviews_raw.csv', index=False)
 print(df.shape)
