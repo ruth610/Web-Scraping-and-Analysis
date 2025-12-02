@@ -3,8 +3,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 analyzer = SentimentIntensityAnalyzer()
 
-if 'df' not in globals():
-    df = pd.DataFrame({'review': []})
+df = pd.read_csv('reviews_clean.csv')
 
 df['vader'] = df['review'].apply(
     lambda t: analyzer.polarity_scores(str(t))
@@ -25,4 +24,4 @@ def sentiment_label(score):
 
 df['sentiment_label'] = df['sentiment_score'].apply(sentiment_label)
 
-df.to_csv('reviews_with_sentiment.csv', index=False)
+df.to_csv('reviews_with_sentiment.csv', index=True)
