@@ -4,7 +4,13 @@ from datetime import datetime
 
 df = pd.read_csv('reviews_raw.csv', dtype=str)
 # Keep cols review_id, review, rating, date, bank, source
-df = df[['review_id','review','rating','date','bank','source']].drop_duplicates(subset='review_id')
+df = df[['review_id',
+        'review',
+        'rating',
+        'date',
+        'bank',
+        'source'
+    ]].drop_duplicates(subset='review_id')
 df['rating'] = df['rating'].astype(float)
 # normalize dates to YYYY-MM-DD
 def norm_date(d):
@@ -14,8 +20,7 @@ def norm_date(d):
         return None
 df['date'] = df['date'].apply(norm_date)
 df = df[df['review'].notnull()]
-df = df.dropna(subset=['date'])  # optionally keep but document
-# basic text cleaning
+df = df.dropna(subset=['date'])  
 def clean_text(s):
     s = str(s)
     s = re.sub(r'\s+', ' ', s).strip()
